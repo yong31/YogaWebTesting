@@ -1,0 +1,258 @@
+{% load static %}
+{% static "img" as baseUrl %}
+
+{% include 'header.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0;">
+
+<style>
+  .image-show {
+    margin: 0 auto;
+  }
+
+  .contact form button {
+    background: #549c84;
+    padding: 10px 25px;
+    margin-left: 30px;
+    margin-right: 15px;
+    border-radius: 50px;
+    color: #fff;
+    border-width: 0;
+  }
+</style>
+
+<!-- ======= Hero Section ======= -->
+<div class="text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+  <div class="row-banner">
+    <div class="column-banner banner-left">
+      <h1>Learn More About Best Suited Yoga Class For You</h1>
+      <h2>Test Your Stress Now!</h2>
+      <a href="examine_DAS" class="btn-get-started scrollto">Get Started</a>
+    </div>
+    <div class="column-banner banner-right">
+      <img src="{% static 'img/pic14-modified.png' %}" class="img-fluid" alt=""
+        style="width:400px; height:400px; object-fit:cover; border-radius:50%; ">
+      <p style="margin-top:30px; text-align:center">
+        "Calming the mind is yoga. Not just standing on the head.”</p>
+    </div>
+
+  </div>
+
+</div>
+<!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="row content">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <h2>What Is The Test For?</h2>
+          <h3>MindYoga provides DASS-21 testing and recommend best suited yoga class for you! </h3>
+          <img src="{% static 'img/pic2.jpg' %}" class="img-fluid" alt=""
+            style="width:300px; height:350px; object-fit:cover; margin:20px 0 0 180px">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
+          <p align="justify">
+
+            Everyone experiences stress and anxiety at some point. The difference between them is that stress is a
+            response to a threat in a specific situation, and anxiety is a reaction to stress.
+
+            Most people say that stress has a moderate impact on their lives. It usually disappears when stressors
+            disappear. However, chronic stress can cause anxiety or depression, and that is why it is important to take
+            measures to reduce or eliminate it whenever possible. Chronic stress can affect your health, causing
+            symptoms such as headaches, high blood pressure, chest pain or palpitations, rashes or loss of sleep.
+
+            Once you know your depression, stress and anxiety levels, yoga is a good way to help you reduce them.
+          </p>
+          <br>
+          <b>The test provides you:</b>
+          <ul>
+            <li><i class=" ri-check-double-line"></i>Assesses your emotional state from the last period of time and
+              focuses on three dimensions: depression, anxiety and stress.
+            </li>
+            <li><i class="ri-check-double-line"></i>Recommend suitable yoga classes based on your test results.</li>
+          </ul>
+          <p class="fst-italic">
+            If you're unsure which yoga classes to choose, or just curious about your current level of depression,
+            anxiety, and stress, this
+            self-assessment test can give you some preliminary results.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Section -->
+
+  <!-- ======= home-classes ======= -->
+  <section id="home-classes" class="home-classes">
+    <div class="container">
+
+      <div class="text-center" data-aos="zoom-in">
+        <h3>Find your perfect class</h3>
+        <p>Our bodies are changing, and everyone of us has a unique combination of strength and flexibility. One day you
+          discover that a certain posture is ideal, and the next you discover that getting to the desired posture is
+          difficult for a variety of reasons.</p>
+      </div>
+
+    </div>
+  </section><!-- End home-classes Section -->
+
+  <!-- ======= dasClass Section ======= -->
+  <section id="das" class="das">
+    <div class="container">
+
+      <div class="row content">
+        <div class="col-12 col-md-8" data-aos="fade-left" data-aos-delay="100">
+          <h4>Yoga Class for Depression</h4>
+          <p align="justify">Depression is a common and serious medical illness that
+            negatively affects how
+            you feel, the way you think and how you act. Fortunately, it is also treatable. Depression causes feelings
+            of sadness and/or a loss of interest in activities you once enjoyed. It can lead to a variety of emotional
+            and physical problems and can decrease your ability to function at work and at home.</p>
+          <b>Depression symptoms can vary from mild to severe and can include:</b>
+          <ul>
+            <li><i class="ri-check-double-line"></i>Self-disparaging</li>
+            <li><i class="ri-check-double-line"></i>Dispirited, gloomy, blue</li>
+            <li><i class="ri-check-double-line"></i>Convinced that life has no meaning or value</li>
+            <li><i class="ri-check-double-line"></i>Pessimistic about the future</li>
+            <li><i class="ri-check-double-line"></i>Unable to experience enjoyment or satisfaction</li>
+            <li><i class="ri-check-double-line"></i>Unable to become interested or involved</li>
+            <li><i class="ri-check-double-line"></i>Slow, lacking in initiative</li>
+          </ul>
+          <a class="learnmore-btn" href="{% url 'yogaclass' %}#depression">Learn More</a>
+
+        </div>
+
+        <div class="col-6 col-md-4" data-aos="fade-right" data-aos-delay="200">
+
+          <div class="image-show"><img src="{% static 'img/pic9.jpg' %}" class="img-fluid" alt=""
+              style="width:330px; height:450px; object-fit:cover; border-radius:160px 160px 0px 0px;"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+
+      <div class="row content">
+        <div class="col-6 col-md-4" data-aos="fade-right" data-aos-delay="100">
+          <div class="image-show"><img src="{% static 'img/pic11.jpg' %}" class="img-fluid" alt=""
+              style="width:330px; height:450px; object-fit:cover; border-radius:160px 160px 0px 0px;"></div>
+        </div>
+        <div class="col-12 col-md-8" data-aos="fade-left" data-aos-delay="200">
+          <h4>Yoga Class for Anxiety</h4>
+          <p align="justify">Anxiety is a normal reaction to stress and can be beneficial in some situations. It can
+            alert us to dangers and help us prepare and pay attention. Anxiety disorders differ from normal feelings of
+            nervousness or anxiousness and involve excessive fear or anxiety. Anxiety disorders are the most common of
+            mental disorders and affect nearly 30% of adults at some point in their lives. </p>
+          <b>Anxiety symptoms can vary from mild to severe and can include:</b>
+          <ul>
+            <li><i class="ri-check-double-line"></i>Apprehensive, panicky</li>
+            <li><i class="ri-check-double-line"></i>Trembly, shaky</li>
+            <li><i class="ri-check-double-line"></i>Aware of dryness of the mouth, breathing difficulties, pounding of
+              the heart, sweatiness of the palms</li>
+            <li><i class="ri-check-double-line"></i>Worried about performance and possible loss of control</li>
+          </ul>
+          <a class="learnmore-btn" href="{% url 'yogaclass' %}#anxiety">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <div class="row content">
+        <div class="col-12 col-md-8" data-aos="fade-left" data-aos-delay="100">
+          <h4>Yoga Class for Stress</h4>
+          <p align="justify">Stress is a normal human reaction that happens to everyone. In fact, the human body is
+            designed to experience stress and react to it. When you experience changes or challenges, your body produces
+            physical and mental responses. That’s stress. Stress can be positive, keeping us alert, motivated and ready
+            to avoid danger. But stress becomes a problem when stressors continue without relief or periods of
+            relaxation.</p>
+          <b>Stress symptoms can vary from mild to severe and can include:</b>
+          <ul>
+            <li><i class="ri-check-double-line"></i>Over-aroused, tense</li>
+            <li><i class="ri-check-double-line"></i>Unable to relax</li>
+            <li><i class="ri-check-double-line"></i>Touchy, easily upset</li>
+            <li><i class="ri-check-double-line"></i>Irritable</li>
+            <li><i class="ri-check-double-line"></i>Easily startled</li>
+            <li><i class="ri-check-double-line"></i>Nervy, jumpy, fidgety</li>
+            <li><i class="ri-check-double-line"></i>Intolerant of interruption or delay</li>
+          </ul>
+          <a class="learnmore-btn" href="{% url 'yogaclass' %}#stress">Learn More</a>
+
+        </div>
+        <div class="col-6 col-md-4" data-aos="fade-right" data-aos-delay="200">
+
+          <div class="image-show"><img src="{% static 'img/pic12.jpg' %}" class="img-fluid" alt=""
+              style="width:330px; height:450px; object-fit:cover; border-radius:160px 160px 0px 0px;"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- End Team Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-right">
+          <div class="section-title">
+            <h2>Get In Touch</h2>
+          </div>
+        </div>
+
+        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+          <form action="contact" method="post">
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+{% include 'footer.html' %}
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% for message in messages %}
+<script>
+  alert('{{ message }}');
+</script>
+{% endfor %}

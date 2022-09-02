@@ -1,0 +1,86 @@
+{% load static %}
+
+{% include 'header.html' %}
+<style>
+    h3 {
+        margin-top: 150px;
+
+    }
+
+    .container table {
+        margin-bottom: 100px;
+        counter-reset: rowNumber;
+    }
+
+    .container table tbody tr {
+        counter-increment: rowNumber;
+    }
+
+    .container table tbody tr th:first-child::before {
+        content: counter(rowNumber);
+        min-width: 1em;
+        margin-right: 0.5em;
+    }
+</style>
+<main id="main">
+
+    <div class="container">
+        <h3>
+            <center>Test Result Records</center>
+        </h3>
+        {% if user.is_authenticated and user.is_superuser == 0%}
+
+        <div class="table-responsive">
+            <table class="table table-success table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Depression Level</th>
+                        <th scope="col">Anxiety Level</th>
+                        <th scope="col">Stress Level</th>
+                        <th scope="col">Date Tested</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results%}
+                    <tr>
+                        <th></th>
+                        <td>{{result.depressionLvl}}</td>
+                        <td>{{result.anxietyLvl}}</td>
+                        <td> {{result.stressLvl}}</td>
+                        <td> {{result.submit_datetime}}</td>
+                    </tr>
+
+                    {% endfor %}
+                    {% if results.count == 0 %}
+                    <tr>
+                        <th></th>
+                        <td>No Records</td>
+                        <td>No Records</td>
+                        <td>No Records</td>
+                        <td>No Records</td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+
+    </div>
+
+</main>
+
+{% include 'footer.html' %}
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>

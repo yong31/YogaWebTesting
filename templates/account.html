@@ -1,0 +1,160 @@
+{% load static %}
+
+{% include 'header.html' %}
+<style>
+    .account_form {
+        width: 50%;
+        border-radius: 6px;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 100px;
+    }
+
+    .form-group a {
+        text-decoration: underline;
+        color: blue;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .updatebtn {
+        text-align: center;
+    }
+
+    .updatebtn button {
+        width: 200px;
+        padding: 10px;
+        border: none;
+        border-radius: 50px;
+        background: rgb(141, 117, 117);
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .error-msg {
+        margin-top: 100px;
+    }
+
+    .success-msg {
+        margin-top: 100px;
+
+    }
+
+
+    @media (max-width: 768px) {
+        .account_form {
+            width: 80%;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 8px #669999;
+            margin: auto;
+            margin-top: 150px;
+            margin-bottom: 100px;
+        }
+
+        .updatebtn button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 50px;
+            border: none;
+            background: rgb(141, 117, 117);
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+</style>
+<main id="main">
+
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="text-center alert alert-{{ message.tags }} success-msg">
+            {{ message|safe }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="account_form">
+            {% if user_form.errors %}
+            <div class="error-msg">
+
+                <div class="error-msg">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div id="form_errors">
+                            {% for key, value in user_form.errors.items %}
+                            <strong>{{ value }}</strong>
+                            {% endfor %}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <h3>
+                        <center>Edit Profile</center>
+                    </h3>
+                    <br>
+                    <div class="form-group">
+                        <label class="small mb-1">First Name:</label>
+                        {{ user_form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1">Last Name:</label>
+                        {{ user_form.last_name }}
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1">Username:</label>
+                        {{ user_form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1">Email:</label>
+                        {{ user_form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender: </label>
+                        {{member_form.gender}}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Age: </label>
+                        {{member_form.age}}
+
+                    </div>
+                    <div class="form-group">
+                        <label for="orientation">Orientation: </label>
+                        {{member_form.orientation}}
+
+                    </div>
+
+                    <div class="form-group">
+                        <a href="{% url 'password_change' %}">Change Password</a>
+                    </div>
+                    <br>
+                    <div class="updatebtn"> <button type="submit">Save Changes</button> </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+{% include 'footer.html' %}
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>

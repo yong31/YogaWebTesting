@@ -1,0 +1,507 @@
+{% load static %}
+{% static "img" as baseUrl %}
+
+
+{% include 'header.html' %}
+
+<style>
+    body {
+        background: #cedad8;
+        font-family: "Open Sans", sans-serif;
+    }
+
+    h2 {
+        color: #000;
+        font-size: 26px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        margin: 30px 0 60px;
+    }
+
+    h2::after {
+        content: "";
+        width: 100px;
+        position: absolute;
+        margin: 0 auto;
+        height: 4px;
+        border-radius: 1px;
+        background: #549c84;
+        left: 0;
+        right: 0;
+        bottom: -20px;
+    }
+
+    .carousel {
+        margin: 50px auto;
+        padding: 0 70px;
+    }
+
+    .carousel .item {
+        color: #747d89;
+        min-height: 325px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .carousel .thumb-wrapper {
+        padding: 25px 15px;
+        background: #fff;
+        border-radius: 6px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel .item .img-box {
+        height: 120px;
+        margin-bottom: 20px;
+        width: 100%;
+        position: relative;
+    }
+
+    .carousel .item img {
+        max-width: 100%;
+        max-height: 100%;
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+
+    .carousel .item h4 {
+        font-size: 18px;
+    }
+
+    .carousel .item h4,
+    .carousel .item p,
+    .carousel .item ul {
+        margin-bottom: 5px;
+    }
+
+    .carousel .thumb-content .btn {
+        color: #549c84;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: bold;
+        background: none;
+        border: 1px solid #549c84;
+        padding: 6px 14px;
+        margin-top: 5px;
+        line-height: 16px;
+        border-radius: 20px;
+    }
+
+    .carousel .thumb-content .btn:hover,
+    .carousel .thumb-content .btn:focus {
+        color: #fff;
+        background: #549c84;
+        box-shadow: none;
+    }
+
+    .carousel .thumb-content .btn i {
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .carousel .item-price {
+        font-size: 13px;
+        padding: 2px 0;
+    }
+
+    .carousel .item-price strike {
+        opacity: 0.7;
+        margin-right: 5px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        height: 44px;
+        width: 40px;
+        margin: auto 0;
+        opacity: 1;
+
+    }
+
+    .carousel-control-prev i,
+    .carousel-control-next i {
+        font-size: 36px;
+        display: inline-block;
+        z-index: 5;
+        color: rgb(14, 152, 108);
+        opacity: 1;
+    }
+
+    .carousel-control-prev i:hover,
+    .carousel-control-next i:hover {
+        color: rgb(206, 87, 87);
+        opacity: 1;
+    }
+
+    .carousel-control-prev i {
+        margin-left: -2px;
+    }
+
+    .carousel-control-next i {
+        margin-right: -4px;
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+    }
+
+    .carousel-indicators li,
+    .carousel-indicators li.active {
+        width: 10px;
+        height: 10px;
+        margin: 4px;
+        border-radius: 50%;
+        border: none;
+    }
+
+    .carousel-indicators li {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-indicators li.active {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .class-card {
+        padding-bottom: 30px;
+    }
+</style>
+
+<main id="main">
+
+    <!-- ======= Classes ======= -->
+    <section id="classes" class="classes">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-center" data-aos="zoom-in">
+                        <h3>Our Classes</h3>
+
+                        <img src="{% static 'img/pic1.png' %}" class="img-fluid" alt=""
+                            style="width:270px; height:320px; object-fit:cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div style="line-height:1.6;">
+                        <p align="justify">Our mental health can affect the ability of us when practicing yoga. Before
+                            choosing a yoga
+                            class, it is important to know your mental health condition so that you can avoid negative
+                            impacts of taking yoga class that is not suitable for you. We wish to make yoga accessible,
+                            joyful, and an integral part of people’s hectic lives, physical or emotional difficulties.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End classes Section -->
+
+    <!-- ======= Depression Class Section ======= -->
+    <section id="depression">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><b>Depression Yoga Class</b></h2>
+                    <div id="carousel4" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="row">
+                            {% for yogaclass in classes%}
+                            {% if yogaclass.type == "D"%}
+                            <div class="col-md-3 d-flex align-items-stretch class-card" type="button"
+                                data-bs-toggle="modal" data-bs-target="#myModal{{yogaclass.id}}">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <div class="pic"><img src="{{yogaclass.image.url}}" class="img-fluid"
+                                                style="width:300px; height:150px;" alt=""></div>
+                                    </div>
+                                    <div class="member-info">
+                                        <br>
+                                        <h4 style="font-size:20px;">{{yogaclass.name}}</h4>
+                                        <hr>
+                                        <p style="text-align:justify; ">{{yogaclass.description}}</p>
+
+                                    </div>
+                                    <div class="thumb-content">
+                                        <a href="#modal" class="btn btn-primary">Show More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal{{yogaclass.id}}">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{{yogaclass.name}}</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <b>Class content description:</b>
+                                            <br>
+                                            {{yogaclass.class_details}}
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ======= End Depression Class Section ======= -->
+
+
+    <!-- ======= Anxiety Class Section ======= -->
+    <section id="anxiety" class="section-bg">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><b>Anxiety Yoga Class</b></h2>
+                    <div id="carousel4" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="row">
+                            {% for yogaclass in classes%}
+                            {% if yogaclass.type == "A"%}
+                            <div class="col-md-3 d-flex align-items-stretch class-card" type="button"
+                                data-bs-toggle="modal" data-bs-target="#myModal{{yogaclass.id}}">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <div class="pic"><img src="{{yogaclass.image.url}}" class="img-fluid"
+                                                style="width:300px; height:150px;" alt=""></div>
+                                    </div>
+                                    <div class="member-info">
+                                        <br>
+                                        <h4 style="font-size:20px;">{{yogaclass.name}}</h4>
+                                        <hr>
+                                        <p style="text-align:justify; ">{{yogaclass.description}}</p>
+
+                                    </div>
+                                    <div class="thumb-content">
+                                        <a href="#modal" class="btn btn-primary">Show More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal{{yogaclass.id}}">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{{yogaclass.name}}</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <b>Class content description:</b>
+                                            <br>
+                                            {{yogaclass.class_details}}
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section> <!-- ======= End Anxiety Class Section ======= -->
+
+
+    <!-- ======= Stress Class Section ======= -->
+    <section id="stress">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><b>Stress Yoga Class</b></h2>
+                    <div id="carousel4" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="row">
+                            {% for yogaclass in classes%}
+                            {% if yogaclass.type == "S"%}
+                            <div class="col-md-3 d-flex align-items-stretch class-card" type="button"
+                                data-bs-toggle="modal" data-bs-target="#myModal{{yogaclass.id}}">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <div class="pic"><img src="{{yogaclass.image.url}}" class="img-fluid"
+                                                style="width:300px; height:150px;" alt=""></div>
+                                    </div>
+                                    <div class="member-info">
+                                        <br>
+                                        <h4 style="font-size:20px;">{{yogaclass.name}}</h4>
+                                        <hr>
+                                        <p style="text-align:justify; ">{{yogaclass.description}}</p>
+
+                                    </div>
+                                    <div class="thumb-content">
+                                        <a href="#modal" class="btn btn-primary">Show More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal{{yogaclass.id}}">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{{yogaclass.name}}</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <b>Class content description:</b>
+                                            <br>
+                                            {{yogaclass.class_details}}
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- ======= End Stress Class Section ======= -->
+
+
+    <!-- ======= Genereal Class Section ======= -->
+    <section id="general" class="section-bg">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><b>General Yoga Class</b></h2>
+                    <div id="carousel4" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="row">
+                            {% for yogaclass in classes%}
+                            {% if yogaclass.type == "G"%}
+                            <div class="col-md-3 d-flex align-items-stretch class-card" type="button"
+                                data-bs-toggle="modal" data-bs-target="#myModal{{yogaclass.id}}">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <div class="pic"><img src="{{yogaclass.image.url}}" class="img-fluid"
+                                                style="width:300px; height:150px;" alt=""></div>
+                                    </div>
+                                    <div class="member-info">
+                                        <br>
+                                        <h4 style="font-size:20px;">{{yogaclass.name}}</h4>
+                                        <hr>
+                                        <p style="text-align:justify; ">{{yogaclass.description}}</p>
+
+                                    </div>
+                                    <div class="thumb-content">
+                                        <a href="#modal" class="btn btn-primary">Show More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal{{yogaclass.id}}">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">{{yogaclass.name}}</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <b>Class content description:</b>
+                                            <br>
+                                            {{yogaclass.class_details}}
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section> <!-- ======= End General Class Section ======= -->
+
+
+</main><!-- End #main -->
+
+{% include 'footer.html' %}
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>

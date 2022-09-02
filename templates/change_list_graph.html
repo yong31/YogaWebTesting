@@ -1,0 +1,254 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" type='text/css'
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+<!--Chart js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+    integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+    integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- Vendor CSS Files -->
+<link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+<style>
+    .column-left {
+        float: left;
+        width: 33.333%;
+    }
+
+    .column-right {
+        float: right;
+        width: 33.333%;
+    }
+
+    .column-center {
+        display: inline-block;
+        width: 33.333%;
+    }
+
+    .row {
+        margin: 50px 0 30px 0;
+
+    }
+
+    canvas {
+
+        width: 400px !important;
+        height: 470px !important;
+        padding: 0 30px 0 30px;
+    }
+
+    #content {
+        margin-right: 50px;
+        margin-top: 50px;
+        padding: 0;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+
+        var depr_normal = "{{ depr_normal }}";
+        var depr_mild = "{{ depr_mild }}";
+        var depr_moderate = "{{ depr_moderate }}";
+        var depr_severe = "{{ depr_severe }}";
+        var depr_extreme = "{{ depr_extreme }}";
+
+
+        const ctx = document.getElementById('deprChart').getContext('2d');
+        const deprChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Normal", "Mild", "Moderate", "Severe", "Extremely Severe"],
+                datasets: [{
+                    label: 'Depression Level',
+                    data: [depr_normal, depr_mild, depr_moderate, depr_severe, depr_extreme],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontSize: 16
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 14,
+                        }
+                    }]
+                }
+            }
+        });
+    });
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        var anx_normal = "{{ anx_normal }}";
+        var anx_mild = "{{ anx_mild }}";
+        var anx_moderate = "{{ anx_moderate }}";
+        var anx_severe = "{{ anx_severe }}";
+        var anx_extreme = "{{ anx_extreme }}";
+
+        const ctx = document.getElementById('anxChart').getContext('2d');
+        const anxChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Normal", "Mild", "Moderate", "Severe", "Extremely Severe"],
+                datasets: [{
+                    label: 'Anxiety Level',
+                    data: [anx_normal, anx_mild, anx_moderate, anx_severe, anx_extreme],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontSize: 16
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 14,
+                        }
+                    }]
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        var stress_normal = "{{ stress_normal }}";
+        var stress_mild = "{{ stress_mild }}";
+        var stress_moderate = "{{ stress_moderate }}";
+        var stress_severe = "{{ stress_severe }}";
+        var stress_extreme = "{{ stress_extreme }}";
+
+        const ctx = document.getElementById('stressChart').getContext('2d');
+        const stressChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Normal", "Mild", "Moderate", "Severe", "Extremely Severe"],
+                datasets: [{
+                    label: 'Stress Level',
+                    data: [stress_normal, stress_mild, stress_moderate, stress_severe, stress_extreme],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    labels: {
+                        fontSize: 16
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 14,
+                        }
+                    }]
+                }
+            }
+        });
+    });
+
+</script>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <canvas id="deprChart"></canvas>
+    </div>
+
+    <div class="col-md-4">
+        <canvas id="anxChart"></canvas>
+    </div>
+    <div class="col-md-4">
+        <canvas id="stressChart"></canvas>
+    </div>
+</div>
+
+
+{% endblock %}

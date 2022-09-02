@@ -1,0 +1,619 @@
+{% load static %}
+{% static "img" as baseUrl %}
+
+{% include 'header.html' %}
+
+<head>
+    <title>DAS Prediction</title>
+
+
+</head>
+<!-- ======= Cta Section ======= -->
+<section id="cta" class="cta">
+    <div class="container">
+        <div class="text-center" data-aos="zoom-in">
+            <h3>Understanding your current level of stress is the first step in taking control.</h3>
+            <br>
+            <p>The test uses a three scale rating system to measure the severity of a range of symptoms related to
+                depression, anxiety and stress. In effect the test is a Depression Test, Anxiety Test, and Stress Test
+                all in one. The test was developed by medical professionals and is designed to meet the scientific
+                requirements of both researchers and professional clinicians. The test is suitable for both adolescents
+                and adults.</p>
+            <br>
+            <a class="cta-btn" href="#main" class="btn-get-started scrollto">Start The Test Now</a>
+
+        </div>
+    </div>
+</section><!-- End Cta Section -->
+<main id="main">
+    <div class="testbox">
+        <form method="post" action="DAS_result">
+            {% csrf_token %}
+            <div class="banner">
+                <p>
+                    Please read each statement and select the answer which indicates how much the statement
+                    applied to you over the past week. There are no right or wrong answers. Do not spend too much
+                    time on any statement.
+
+                </p>
+            </div>
+            <br />
+            <div class="colums">
+                <div class="item">
+                    <label for="name" style="font-weight: bold;">Name<span>*</span></label>
+                    {% if user.is_authenticated and user.is_superuser == 0%}
+                    <br>
+                    <input id="name" type="hidden" name="name" value="{{user.username}}" required />{{user.username}}
+                    {% else %}
+                    <input id="name" type="text" name="name" required />
+                    {% endif %}
+                </div>
+
+                <div class="item">
+                    <label for="email" style="font-weight: bold;">Email<span>*</span></label>
+                    {% if user.is_authenticated and user.is_superuser == 0%}
+                    <br>
+                    <input id="email" type="hidden" name="email" value="{{user.email}}" required />{{user.email}}
+                    {% else %}
+                    <input id="email" type="email" name="email" required />
+                    {% endif %}
+                </div>
+
+
+                <div class="colums">
+                    <div class="item">
+                        <label for="gender" style="font-weight: bold;">Gender<span>*</span></label>
+                        <br>
+                        {% if user.is_authenticated and user.is_superuser == 0%}
+                        <input id="gender" type="hidden" name="gender" value="{{member_info.gender}}"
+                            required />{{member_info.get_gender_display}}
+                        {% else %}
+                        <select name="gender" id="gender">
+                            <option selected value="" disabled selected></option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+                        {% endif %}
+                    </div>
+                    <div class="item">
+                        <label for="age" style="font-weight: bold;">Age<span>*</span></label>
+                        <br>
+                        {% if user.is_authenticated and user.is_superuser == 0%}
+                        <input id="age_group" type="hidden" name="age_group" value="{{member_info.age}}"
+                            required />{{member_info.get_age_display}}
+
+                        {% else %}
+                        <select name="age_group" id="age_group">
+                            <option selected value="" disabled selected></option>
+                            <option value="0">below 19</option>
+                            <option value="1">19 to 23</option>
+                            <option value="2">24 to 40</option>
+                            <option value="3">above 40</option>
+                        </select>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="item">
+                    <label for="orentation" style="font-weight: bold;">Orientation<span>*</span></label>
+                    <br>
+                    {% if user.is_authenticated and user.is_superuser == 0%}
+
+                    <input id="orientation" type="hidden" name="orientation" value="{{member_info.orientation}}"
+                        required />{{member_info.get_orientation_display}}
+                    {% else %}
+                    <select name="orientation" id="orientation">
+                        <option selected value="" disabled selected></option>
+                        <option value="1">Heterosexual</option>
+                        <option value="2">Bisexual</option>
+                        <option value="3">Homosexual</option>
+                        <option value="4">Asexual</option>
+                        <option value="5">Other</option>
+                    </select>
+                    {% endif %}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="question">
+                <label style="font-weight: bold;">1. I found it hard to wind down</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_1" name="Q1A" />
+                        <label for="radio_1" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_2" name="Q1A" />
+                        <label for="radio_2" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_3" name="Q1A" />
+                        <label for="radio_3" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_4" name="Q1A" />
+                        <label for="radio_4" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">2. I was aware of dryness of my mouth</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_5" name="Q2A" />
+                        <label for="radio_5" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_6" name="Q2A" />
+                        <label for="radio_6" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_7" name="Q2A" />
+                        <label for="radio_7" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_8" name="Q2A" />
+                        <label for="radio_8" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">3. I couldn't seem to experience any positive feeling at all</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_9" name="Q3A" />
+                        <label for="radio_9" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_10" name="Q3A" />
+                        <label for="radio_10" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_11" name="Q3A" />
+                        <label for="radio_11" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_12" name="Q3A" />
+                        <label for="radio_12" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">4. I experienced breathing difficulty (eg, excessively rapid
+                    breathing,
+                    breathlessness in the absence of physical exertion)</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_13" name="Q4A" />
+                        <label for="radio_13" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_14" name="Q4A" />
+                        <label for="radio_14" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_15" name="Q4A" />
+                        <label for="radio_15" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_16" name="Q4A" />
+                        <label for="radio_16" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">5. I found it difficult to work up the initiative to do things</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_17" name="Q5A" />
+                        <label for="radio_17" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_18" name="Q5A" />
+                        <label for="radio_18" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_19" name="Q5A" />
+                        <label for="radio_19" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_20" name="Q5A" />
+                        <label for="radio_20" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">6. I tended to over-react to situations</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_21" name="Q6A" />
+                        <label for="radio_21" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_22" name="Q6A" />
+                        <label for="radio_22" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_23" name="Q6A" />
+                        <label for="radio_23" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_24" name="Q6A" />
+                        <label for="radio_24" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">7. I experienced trembling (eg, in the hands)</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_25" name="Q7A" />
+                        <label for="radio_25" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_26" name="Q7A" />
+                        <label for="radio_26" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_27" name="Q7A" />
+                        <label for="radio_27" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_28" name="Q7A" />
+                        <label for="radio_28" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">8. I felt that I was using a lot of nervous energy</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_29" name="Q8A" />
+                        <label for="radio_29" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_30" name="Q8A" />
+                        <label for="radio_30" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_31" name="Q8A" />
+                        <label for="radio_31" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_32" name="Q8A" />
+                        <label for="radio_32" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">9. I was worried about situations in which I might panic and make
+                    a fool of myself</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_33" name="Q9A" />
+                        <label for="radio_33" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_34" name="Q9A" />
+                        <label for="radio_34" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_35" name="Q9A" />
+                        <label for="radio_35" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_36" name="Q9A" />
+                        <label for="radio_36" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">10. I felt that I had nothing to look forward to</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_37" name="Q10A" />
+                        <label for="radio_37" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_38" name="Q10A" />
+                        <label for="radio_38" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_39" name="Q10A" />
+                        <label for="radio_39" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_40" name="Q10A" />
+                        <label for="radio_40" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">11. I found myself getting agitated</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_41" name="Q11A" />
+                        <label for="radio_41" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_42" name="Q11A" />
+                        <label for="radio_42" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_43" name="Q11A" />
+                        <label for="radio_43" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_44" name="Q11A" />
+                        <label for="radio_44" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">12. I found it difficult to relax</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_45" name="Q12A" />
+                        <label for="radio_45" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_46" name="Q12A" />
+                        <label for="radio_46" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_47" name="Q12A" />
+                        <label for="radio_47" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_48" name="Q12A" />
+                        <label for="radio_48" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">13. I felt down-hearted and blue</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_49" name="Q13A" />
+                        <label for="radio_49" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_50" name="Q13A" />
+                        <label for="radio_50" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_51" name="Q13A" />
+                        <label for="radio_51" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_52" name="Q13A" />
+                        <label for="radio_52" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">14. I was intolerant of anything that kept me from getting on with
+                    what I was doing</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_53" name="Q14A" />
+                        <label for="radio_53" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_54" name="Q14A" />
+                        <label for="radio_54" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_55" name="Q14A" />
+                        <label for="radio_55" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_56" name="Q14A" />
+                        <label for="radio_56" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">15. I felt I was close to panic</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_57" name="Q15A" />
+                        <label for="radio_57" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_58" name="Q15A" />
+                        <label for="radio_58" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_59" name="Q15A" />
+                        <label for="radio_59" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_60" name="Q15A" />
+                        <label for="radio_60" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">16. I was unable to become enthusiastic about anything</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_61" name="Q16A" />
+                        <label for="radio_61" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_62" name="Q16A" />
+                        <label for="radio_62" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_63" name="Q16A" />
+                        <label for="radio_63" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_64" name="Q16A" />
+                        <label for="radio_64" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">17. I felt I wasn't worth much as a person</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_65" name="Q17A" />
+                        <label for="radio_65" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_66" name="Q17A" />
+                        <label for="radio_66" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_67" name="Q17A" />
+                        <label for="radio_67" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_68" name="Q17A" />
+                        <label for="radio_68" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">18. I felt that I was rather touchy</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_69" name="Q18A" />
+                        <label for="radio_69" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_70" name="Q18A" />
+                        <label for="radio_70" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_71" name="Q18A" />
+                        <label for="radio_71" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_72" name="Q18A" />
+                        <label for="radio_72" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">19. I was aware of the action of my heart in the absence of physical
+                    exertion (eg, sense of heart rate increase, heart missing a beat)</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_73" name="Q19A" />
+                        <label for="radio_73" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_74" name="Q19A" />
+                        <label for="radio_74" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_75" name="Q19A" />
+                        <label for="radio_75" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_76" name="Q19A" />
+                        <label for="radio_76" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">20. I felt scared without any good reason</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_77" name="Q20A" />
+                        <label for="radio_77" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_78" name="Q20A" />
+                        <label for="radio_78" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_79" name="Q20A" />
+                        <label for="radio_79" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_80" name="Q20A" />
+                        <label for="radio_80" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <label style="font-weight: bold;">21. I felt that life was meaningless</label>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="0" id="radio_81" name="Q21A" />
+                        <label for="radio_81" class="radio"><span>Never</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="1" id="radio_82" name="Q21A" />
+                        <label for="radio_82" class="radio"><span>Sometimes</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="2" id="radio_83" name="Q21A" />
+                        <label for="radio_83" class="radio"><span>Often</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="3" id="radio_84" name="Q21A" />
+                        <label for="radio_84" class="radio"><span>Most of the time</span></label>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="btn-block">
+                <button type="submit" href="testresult.html">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+
+
+{% include 'footer.html' %}
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/aos/aos.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% for message in messages %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endfor %}
