@@ -38,8 +38,7 @@ def login(request):
             messages.info(request,'Field cannot be empty!')
             return render(request,'login.html',status=401)
     
-    return render(request,'login.html')
-
+    return HttpResponse("login.html")
 
 def register(request):
 
